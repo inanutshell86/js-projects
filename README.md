@@ -1,1 +1,4 @@
-###Task List
+### Project list
+1. Task list
+2. Loan calculator (switch to the loan-calculator branch)
+3. Number guesser (switch to the number-guesser branch)
