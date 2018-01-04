@@ -5,3 +5,4 @@
 4. The book list (switch to the book-list branch)
 5. The EasyHTTP library (switch to the easyhttp branh)
 6. The Fetch API (switch to the fetchapi branch)
+7. The Github Finder (switch to the github-finder branch)
