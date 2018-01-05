@@ -6,3 +6,4 @@
 5. The EasyHTTP library (switch to the easyhttp branh)
 6. The Fetch API (switch to the fetchapi branch)
 7. The Github Finder (switch to the github-finder branch)
+8. The WeatherJS (switch to the weather-js branch)
