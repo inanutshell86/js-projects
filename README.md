@@ -9,3 +9,4 @@
 8. The WeatherJS (switch to the weather-js branch)
 9. The Form Validation (switch to the userform branch)
 10. The Profile Scroller (switch to the profile-scroller branch)
+11. The State Pattern Project (switch to the state-pattern branch)
