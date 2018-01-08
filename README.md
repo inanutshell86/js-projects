@@ -8,3 +8,4 @@
 7. The Github Finder (switch to the github-finder branch)
 8. The WeatherJS (switch to the weather-js branch)
 9. The Form Validation (switch to the userform branch)
+10. The Profile Scroller (switch to the profile-scroller branch)
