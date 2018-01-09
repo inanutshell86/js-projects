@@ -87,6 +87,21 @@ const ItemCtrl = (function () {
             });
 
             return found;
+        },
+
+        deleteItem: function (id) {
+            // Get ids
+            ids = data.items.map(function (item) {
+                return item.id;
+            });
+            // Get index
+            const index = ids.indexOf(id);
+            // Remove item
+            data.items.splice(index, 1);
+        },
+
+        clearAllItems: function () {
+            data.items = [];
         }
     }
 })();
@@ -102,7 +117,8 @@ const UICtrl = (function () {
         updateBtn: '.update-btn',
         deleteBtn: '.delete-btn',
         backBtn: '.back-btn',
-        listItems: '#item-list li'
+        listItems: '#item-list li',
+        clearBtn: '.clear-btn'
     }
 
     return {
@@ -197,6 +213,21 @@ const UICtrl = (function () {
                     </a>`;
                 }
             });
+        },
+
+        deleteListItem: function (id) {
+            const itemID = `#item-${id}`;
+            const item = document.querySelector(itemID);
+            item.remove();
+        },
+
+        removeItems: function () {
+            let listItems = document.querySelectorAll(UISelectors.listItems);
+            // Turn Node list into array
+            listItems = Array.from(listItems);
+            listItems.forEach(function (item) {
+                item.remove();
+            })
         }
     }
 })();
@@ -220,6 +251,12 @@ const App = (function (ItemCtrl, UICtrl) {
                 return false;
             }
         });
+        // Back button event
+        document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);
+        // Delete item event
+        document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
+        // Clear items event
+        document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick);
     }
 
     // Add item submit
@@ -279,6 +316,37 @@ const App = (function (ItemCtrl, UICtrl) {
         UICtrl.clearEditState();
 
         e.preventDefault();
+    }
+
+    // Delete item submit
+    const itemDeleteSubmit = function (e) {
+        // Get curr item
+        const currentItem = ItemCtrl.getCurrItem();
+        // Delete from data structure
+        ItemCtrl.deleteItem(currentItem.id);
+        // Delete from ui
+        UICtrl.deleteListItem(currentItem.id);
+        // Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+        // Add total calories to ui
+        UICtrl.showTotalCalories(totalCalories);
+        UICtrl.clearEditState();
+        e.preventDefault();
+    }
+
+    // Clear items event
+    const clearAllItemsClick = function () {
+        // Delete all items from data structure
+        ItemCtrl.clearAllItems();
+        // Get total calories
+        const totalCalories = ItemCtrl.getTotalCalories();
+        // Add total calories to ui
+        UICtrl.showTotalCalories(totalCalories);
+        // Remove from ui
+        UICtrl.removeItems();
+        // Hide ul
+        UICtrl.hideList();
+
     }
 
     // Public methods
